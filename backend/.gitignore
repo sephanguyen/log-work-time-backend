@@ -1,0 +1,23 @@
+# build
+/dist
+
+# node.js
+node_modules
+
+# sublime text
+*.sublime-workspace
+
+.idea/*
+.vscode/*
+
+npm-debug.log
+
+.idea/*
+
+.env
+
+source/**/*.js
+
+mocha.junit
+
+data/logs/*
