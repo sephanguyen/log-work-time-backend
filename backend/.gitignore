@@ -21,3 +21,5 @@ source/**/*.js
 mocha.junit
 
 data/logs/*
+
+.DS_Store
