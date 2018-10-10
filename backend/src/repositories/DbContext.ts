@@ -12,6 +12,6 @@ export class Dbcontext implements AfterRoutesInit {
   }
 
   public getReporitory(target: any) {
-    return this.connection.getRepository(target);
+    return this.connection.manager.getRepository(target);
   }
 }

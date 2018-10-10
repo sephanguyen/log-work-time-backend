@@ -13,14 +13,14 @@ export class UsersService implements AfterRoutesInit {
   }
 
   async create(user: User): Promise<User> {
-    await this.userRepository.manager.save(user);
+    await this.userRepository.save(user);
     console.log('Saved a new user with id: ' + user.id);
 
     return user;
   }
 
   async find(): Promise<User[]> {
-    const users = await this.userRepository.manager.find(User);
+    const users = await this.userRepository.find();
     console.log('Loaded users: ', users);
 
     return users;
