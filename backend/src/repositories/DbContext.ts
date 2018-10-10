@@ -1,6 +1,7 @@
 import { Service, AfterRoutesInit } from '@tsed/common';
 import { TypeORMService } from '@tsed/typeorm';
-import { Connection } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
+import { User } from '../entity/User';
 
 @Service()
 export class Dbcontext implements AfterRoutesInit {
@@ -12,6 +13,6 @@ export class Dbcontext implements AfterRoutesInit {
   }
 
   public getReporitory(target: any) {
-    return this.connection.manager.getRepository(target);
+    return this.connection.manager.getRepository<User>(target);
   }
 }

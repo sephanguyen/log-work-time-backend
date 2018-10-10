@@ -1,11 +1,12 @@
 import { Service, AfterRoutesInit } from '@tsed/common';
+import { Repository } from 'typeorm';
 
 import { User } from '../entity/User';
 import { Dbcontext } from '../repositories/DbContext';
 
 @Service()
 export class UsersService implements AfterRoutesInit {
-  private userRepository;
+  private userRepository: Repository<User>;
   constructor(private dbcontext: Dbcontext) {}
 
   $afterRoutesInit() {
