@@ -8,7 +8,7 @@ export class Dbcontext implements AfterRoutesInit {
   constructor(private typeORMService: TypeORMService) {}
 
   $afterRoutesInit() {
-    this.connection = this.typeORMService.get('default');
+    this.connection = this.typeORMService.get(process.env.NAME_DB_DEFAULT);
   }
 
   public getReporitory<T>(target: any) {

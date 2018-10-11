@@ -6,6 +6,7 @@ import Path = require('path');
 import { NotFoundMiddleware } from './system/NotFoundMiddleware';
 
 const rootDir = Path.resolve(__dirname);
+require('dotenv').config();
 
 @ServerSettings({
   rootDir: Path.resolve(__dirname),
@@ -28,12 +29,12 @@ const rootDir = Path.resolve(__dirname);
   },
   typeorm: [
     {
-      name: 'default',
-      type: 'mysql',
-      host: 'localhost',
-      database: 'school',
-      username: 'root',
-      password: '123456',
+      name: process.env.NAME_DB_DEFAULT,
+      type: process.env.TYPE_DB,
+      host: process.env.HOST_DB,
+      database: process.env.DATABASE,
+      username: process.env.USERNAME_DB,
+      password: process.env.PASSWORD_DB,
       synchronize: true,
       logging: true,
       entities: [`${__dirname}/entity/*{.ts,.js}`],
