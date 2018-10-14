@@ -10,10 +10,6 @@ export class User {
   @ApiModelProperty()
   firstName: string;
 
-  @Column()
-  @ApiModelProperty()
-  description: string;
-
   @Column({ name: 'last-name' })
   @ApiModelProperty()
   lastName: string;

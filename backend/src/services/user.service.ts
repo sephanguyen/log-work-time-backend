@@ -23,9 +23,9 @@ export class UserService {
     return await this.userRepository.findOne({ where: { email } });
   }
 
-  public async checkUserNameAndPassword(userName, password) {
+  public async getUserWithUserName(userName) {
     return await this.userRepository.findOne({
-      where: { userName, password }
+      where: { userName }
     });
   }
 

@@ -3,6 +3,8 @@ import { UserService } from './user.service';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from 'interfaces/jwt-payload.interface';
 import { UserLogin } from 'interfaces/user-login.interface';
+import { User } from 'entities/user.entity';
+import { hash, compare } from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -12,15 +14,12 @@ export class AuthService {
   ) {}
 
   async signIn({ userName, password }: UserLogin): Promise<string> {
-    const user = await this.userService.checkUserNameAndPassword(
-      userName,
-      password
-    );
+    const user = await this.userService.getUserWithUserName(userName);
     if (!user) {
-      throw new HttpException(
-        'User name Or password not match',
-        HttpStatus.BAD_REQUEST
-      );
+      throw new HttpException('User not found', HttpStatus.BAD_REQUEST);
+    }
+    if (!compare(password, user.password)) {
+      throw new HttpException('Password not match', HttpStatus.BAD_REQUEST);
     }
     const userPayload: JwtPayload = { email: user.email };
     return this.jwtService.sign(userPayload);
@@ -28,5 +27,12 @@ export class AuthService {
 
   async validateUser(payload: JwtPayload): Promise<any> {
     return await this.userService.findOneByEmail(payload.email);
+  }
+
+  async register(user: User) {
+    const { password } = user;
+    const hashPassword = await hash(password, 10);
+    await this.userService.create({ ...user, password: hashPassword });
+    return true;
   }
 }
