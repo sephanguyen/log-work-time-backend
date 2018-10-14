@@ -14,11 +14,23 @@ export class User {
   @ApiModelProperty()
   description: string;
 
-  @Column()
+  @Column({ name: 'last-name' })
   @ApiModelProperty()
   lastName: string;
 
   @Column()
   @ApiModelProperty()
   age: number;
+
+  @Column()
+  @ApiModelProperty()
+  email: string;
+
+  @Column({ name: 'user-name' })
+  @ApiModelProperty()
+  userName: string;
+
+  @Column()
+  @ApiModelProperty()
+  password: string;
 }

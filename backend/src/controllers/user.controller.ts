@@ -1,7 +1,8 @@
-import { Get, Controller, Body, Post } from '@nestjs/common';
+import { Get, Controller, Body, Post, UseGuards } from '@nestjs/common';
 import { UserService } from 'services/user.service';
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 import { User } from 'entities/user.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiUseTags('users')
 @Controller('users')
@@ -11,7 +12,7 @@ export class UserController {
   @Get()
   @ApiResponse({
     status: 200,
-    description: 'Ok',
+    description: 'Ok'
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll() {
@@ -19,9 +20,10 @@ export class UserController {
   }
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   @ApiResponse({
     status: 201,
-    description: 'Ok',
+    description: 'Ok'
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(@Body() user: User) {

@@ -8,11 +8,25 @@ import { Transactional } from 'typeorm-transactional-cls-hooked';
 export class UserService {
   constructor(
     @InjectRepository(UserRepository)
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: UserRepository
   ) {}
 
   public async findAllUser() {
     return await this.userRepository.find();
+  }
+
+  public async findOneByToken(token) {
+    return await this.userRepository.findOne({ where: { token } });
+  }
+
+  public async findOneByEmail(email) {
+    return await this.userRepository.findOne({ where: { email } });
+  }
+
+  public async checkUserNameAndPassword(userName, password) {
+    return await this.userRepository.findOne({
+      where: { userName, password }
+    });
   }
 
   @Transactional()
