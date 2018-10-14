@@ -1,5 +1,5 @@
 import { EntityRepository } from 'typeorm';
-import { User } from 'entities/user.entity';
+import { User } from 'user/entities/user.entity';
 import { BaseRepository } from 'typeorm-transactional-cls-hooked';
 
 @EntityRepository(User)

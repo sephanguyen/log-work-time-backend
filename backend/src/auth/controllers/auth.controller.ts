@@ -1,8 +1,8 @@
 import { Controller, Body, Post } from '@nestjs/common';
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
-import { AuthService } from 'services/auth.service';
-import { UserLogin } from 'interfaces/user-login.interface';
-import { User } from 'entities/user.entity';
+import { AuthService } from 'auth/services/auth.service';
+import { UserLogin } from 'auth/interfaces/user-login.interface';
+import { User } from 'user/entities/user.entity';
 
 @ApiUseTags('auth')
 @Controller('auth')

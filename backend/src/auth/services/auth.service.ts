@@ -1,9 +1,9 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { UserService } from './user.service';
+import { UserService } from '../../user/services/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from 'interfaces/jwt-payload.interface';
-import { UserLogin } from 'interfaces/user-login.interface';
-import { User } from 'entities/user.entity';
+import { JwtPayload } from 'auth/interfaces/jwt-payload.interface';
+import { UserLogin } from 'auth/interfaces/user-login.interface';
+import { User } from 'user/entities/user.entity';
 import { hash, compare } from 'bcrypt';
 
 @Injectable()
